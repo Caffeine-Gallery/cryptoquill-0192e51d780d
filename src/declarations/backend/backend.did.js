@@ -5,9 +5,14 @@ export const idlFactory = ({ IDL }) => {
     'body' : IDL.Text,
     'author' : IDL.Text,
     'timestamp' : IDL.Int,
+    'category' : IDL.Text,
   });
   return IDL.Service({
-    'createPost' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [IDL.Nat], []),
+    'createPost' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
+      ),
     'getPost' : IDL.Func([IDL.Nat], [IDL.Opt(Post)], ['query']),
     'getPosts' : IDL.Func([], [IDL.Vec(Post)], ['query']),
   });

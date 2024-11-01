@@ -13,6 +13,7 @@ actor {
     title: Text;
     body: Text;
     author: Text;
+    category: Text;
     timestamp: Int;
   };
 
@@ -23,12 +24,13 @@ actor {
     Array.reverse(posts)
   };
 
-  public func createPost(title: Text, body: Text, author: Text) : async Nat {
+  public func createPost(title: Text, body: Text, author: Text, category: Text) : async Nat {
     let post : Post = {
       id = nextId;
       title = title;
       body = body;
       author = author;
+      category = category;
       timestamp = Time.now();
     };
     posts := Array.append(posts, [post]);

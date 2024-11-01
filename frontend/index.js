@@ -20,10 +20,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
+    const category = document.getElementById('category').value;
     const body = quill.root.innerHTML;
 
     try {
-      await backend.createPost(title, body, author);
+      await backend.createPost(title, body, author, category);
       postForm.reset();
       quill.setContents([]);
       newPostForm.style.display = 'none';
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         postElement.className = 'post mb-5';
         postElement.innerHTML = `
           <h2>${post.title}</h2>
-          <p class="text-muted">By ${post.author} on ${new Date(Number(post.timestamp) / 1000000).toLocaleString()}</p>
+          <p class="text-muted">By ${post.author} in ${post.category} on ${new Date(Number(post.timestamp) / 1000000).toLocaleString()}</p>
           <div class="post-content">${post.body}</div>
         `;
         postsContainer.appendChild(postElement);
